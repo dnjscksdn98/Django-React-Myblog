@@ -11,13 +11,16 @@ function Login(props) {
           value={username}
           onChange={handleChange}
           placeholder="username"
+          autoComplete="off"
         />
+        <br />
         <input
           name="password"
           value={password}
           onChange={handleChange}
           placeholder="password"
         />
+        <br />
         <button type="submit">login</button>
       </form>
     </React.Fragment>

@@ -10,14 +10,16 @@ function Home(props) {
         <Link to="/">Home</Link>
       </li>
       {isAuthenticated ? (
-        <li>
-          <Link to="/logout">Logout</Link>
-        </li>
-      ) : (
         <React.Fragment>
           <li>
             <Link to="/profile">Profile</Link>
           </li>
+          <li>
+            <Link to="/logout">Logout</Link>
+          </li>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
           <li>
             <Link to="/login">Login</Link>
           </li>

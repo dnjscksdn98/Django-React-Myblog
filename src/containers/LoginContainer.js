@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import Login from "../components/Login";
 import { login } from "../modules/auth";
@@ -10,6 +11,8 @@ function LoginContainer() {
     password: ""
   });
   const { username, password } = inputs;
+
+  const isAuthenticated = useSelector(state => state.auth.token !== null);
 
   const dispatch = useDispatch();
 
@@ -27,12 +30,15 @@ function LoginContainer() {
   };
 
   return (
-    <Login
-      username={username}
-      password={password}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-    />
+    <React.Fragment>
+      {isAuthenticated && <Redirect to="/" />}
+      <Login
+        username={username}
+        password={password}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+    </React.Fragment>
   );
 }
 

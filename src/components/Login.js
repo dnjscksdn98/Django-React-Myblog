@@ -19,6 +19,7 @@ function Login(props) {
           value={password}
           onChange={handleChange}
           placeholder="password"
+          type="password"
         />
         <br />
         <button type="submit">login</button>

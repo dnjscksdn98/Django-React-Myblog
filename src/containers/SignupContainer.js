@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Signup from "../components/Signup";
-import signup from "../modules/auth";
+import { signup } from "../modules/auth";
 
 function SignupContainer() {
   const [inputs, setInputs] = useState({

@@ -17,21 +17,25 @@ function BlogDetail(props) {
         </div>
         <ReactSafeHtml html={post.content} />
         <hr />
+
         {post.comment_count < 1 ? (
           <span>No comments.</span>
         ) : (
-          <React.Fragment>
-            <h3>{post.comments.user}</h3>
-            <div>{post.comments.timestamp.substring(0, 10)}</div>
-            <p>{post.comments.content}</p>
-          </React.Fragment>
+          post.comments.map(comment => (
+            <React.Fragment key={comment.id}>
+              <h3>{comment.user.username}</h3>
+              <p>{comment.content}</p>
+            </React.Fragment>
+          ))
         )}
+
         <form onSubmit={handleSubmit} method="POST">
           <input
             placeholder="Leave a comment."
             name="comment"
             value={comment}
             onChange={handleChange}
+            autoComplete="off"
           />
           <button type="submit">submit</button>
         </form>

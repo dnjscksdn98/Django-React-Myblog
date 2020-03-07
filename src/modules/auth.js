@@ -39,9 +39,9 @@ export const checkTimeout = expirationTime => dispatch => {
   }, expirationTime * 1000);
 };
 
-export const login = (username, password) => async dispatch => {
+export const login = (username, password) => dispatch => {
   dispatch(start());
-  await axios
+  axios
     .post("http://127.0.0.1:8000/rest-auth/login/", {
       username,
       password
@@ -59,14 +59,9 @@ export const login = (username, password) => async dispatch => {
     });
 };
 
-export const signup = (
-  username,
-  email,
-  password1,
-  password2
-) => async dispatch => {
+export const signup = (username, email, password1, password2) => dispatch => {
   dispatch(start());
-  await axios
+  axios
     .post("http://127.0.0.1:8000/rest-auth/registration/", {
       username,
       email,

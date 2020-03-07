@@ -28,14 +28,9 @@ function BlogDetailContainer({ match }) {
   const handleSubmit = event => {
     event.preventDefault();
 
-    // if (isAuthenticated) {
-    //   dispatch(addComment(comment, blogId));
-    // } else {
-    //   return <Redirect to="/login" />;
-    // }
     dispatch(addComment(comment, blogId));
-
     setComment("");
+    dispatch(getPost(blogId));
   };
 
   useEffect(() => {

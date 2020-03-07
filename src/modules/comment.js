@@ -1,4 +1,4 @@
-import axios from "axios";
+import { authAxios } from "./utils";
 
 const ADD_COMMENT_START = "comment/ADD_COMMENT_START";
 const ADD_COMMENT_SUCCESS = "comment/ADD_COMMENT_SUCCESS";
@@ -27,7 +27,14 @@ export const fail = error => {
 export const addComment = (comment, blogId) => async dispatch => {
   dispatch(start());
 
-  await axios
+  // try {
+  //   await authAxios.post("http://127.0.0.1:8000/api/add-comment/", {comment, blogId})
+  //   dispatch(success(comment));
+  // } catch(err) {
+  //   dispatch(fail(err));
+  // }
+
+  await authAxios
     .post("http://127.0.0.1:8000/api/add-comment/", {
       comment,
       blogId

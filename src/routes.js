@@ -8,13 +8,15 @@ import LogoutContainer from "./containers/LogoutContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import BlogContainer from "./containers/BlogContainer";
 import BlogDetailContainer from "./containers/BlogDetailContainer";
+import PostCreateContainer from "./containers/PostCreateContainer";
 
 const BaseRouter = () => (
   <Switch>
     <Route exact path="/" component={HomeContainer} />
     <Route path="/blog/:blogId" component={BlogDetailContainer} />
     <Route path="/blog" component={BlogContainer} />
-    <Route path="/profile" component={ProfileContainer} />
+    <Route path="/profile/create" component={PostCreateContainer} />
+    <Route exact path="/profile" component={ProfileContainer} />
     <Route path="/logout" component={LogoutContainer} />
     <Route path="/login" component={LoginContainer} />
     <Route path="/signup" component={SignupContainer} />

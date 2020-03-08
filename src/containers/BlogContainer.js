@@ -22,7 +22,7 @@ function BlogContainer() {
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error</h2>;
-  if (!posts) return null;
+  if (!posts) return <h2>There is no posts.</h2>;
 
   return <Blog posts={posts} />;
 }

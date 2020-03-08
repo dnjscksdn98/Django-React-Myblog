@@ -45,8 +45,7 @@ function PostCreateContainer() {
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error.</h2>;
-  //   if (!blogId) return null;
-  //   if (blogId) return <Redirect to={`/blog/${blogId}`} />;
+  if (blogId) return <Redirect to={`/blog/${blogId}`} />;
   if (categories === null) return <h2>There is no existing categories.</h2>;
 
   return (
@@ -58,6 +57,8 @@ function PostCreateContainer() {
       category={category}
       content={content}
       handleChange={handleChange}
+      formData={formData}
+      setFormData={setFormData}
       onSubmit={onSubmit}
     />
   );

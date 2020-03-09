@@ -3,16 +3,17 @@ import { useForm } from "react-hook-form";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-function PostCreate(props) {
+function BlogCreate(props) {
   const { register, handleSubmit } = useForm();
   const {
     categories,
     title,
     overview,
     thumbnail,
-    category,
+    selectedCategories,
     content,
     handleChange,
+    handleSelectChange,
     formData,
     setFormData,
     onSubmit
@@ -55,7 +56,7 @@ function PostCreate(props) {
             value={thumbnail}
             type="file"
             onChange={handleChange}
-            ref={register({ required: true })}
+            // ref={register({ required: true })}
           />
           <br />
           <label htmlFor="category">Category</label>
@@ -63,12 +64,12 @@ function PostCreate(props) {
           <select
             id="category"
             name="category"
-            value={category}
-            onChange={handleChange}
+            value={selectedCategories}
+            multiple
+            onChange={handleSelectChange}
             placeholder="Categories"
             ref={register({ required: true })}
           >
-            <option value="">Select a category</option>
             {categories.map(c => (
               <option value={c.title} key={c.id}>
                 {c.title}
@@ -103,4 +104,4 @@ function PostCreate(props) {
   );
 }
 
-export default PostCreate;
+export default BlogCreate;

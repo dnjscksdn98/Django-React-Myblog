@@ -6,6 +6,8 @@ import post from "./post";
 import comment from "./comment";
 import create from "./createPost";
 import categories from "./categories";
+import myPosts from "./myPosts";
+import update from "./updatePost";
 
 const rootReducer = combineReducers({
   auth,
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
   post,
   comment,
   create,
-  categories
+  categories,
+  myPosts,
+  update
 });
 
 export default rootReducer;

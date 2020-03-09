@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
-import PostCreate from "../components/PostCreate";
+import BlogCreate from "../components/BlogCreate";
 import { getCategories } from "../modules/categories";
 import { createPost } from "../modules/createPost";
 
-function PostCreateContainer() {
+function BlogCreateContainer() {
   const { loading, blogId, error, categories } = useSelector(
     state => ({
       loading: state.create.loading,
@@ -22,10 +22,11 @@ function PostCreateContainer() {
     title: "",
     overview: "",
     thumbnail: "",
-    category: "",
     content: ""
   });
-  const { title, overview, thumbnail, category, content } = formData;
+  const { title, overview, thumbnail, content } = formData;
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const handleChange = event => {
     setFormData({
@@ -34,9 +35,19 @@ function PostCreateContainer() {
     });
   };
 
+  const handleSelectChange = event => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0, l = options.length; i < l; i += 1) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    setSelectedCategories(value);
+  };
+
   const onSubmit = event => {
-    // event.preventDefault();
-    dispatch(createPost(formData));
+    dispatch(createPost(formData, selectedCategories));
   };
 
   useEffect(() => {
@@ -46,17 +57,18 @@ function PostCreateContainer() {
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error.</h2>;
   if (blogId) return <Redirect to={`/blog/${blogId}`} />;
-  if (categories === null) return <h2>There is no existing categories.</h2>;
+  if (!categories) return <h2>Loading...</h2>;
 
   return (
-    <PostCreate
+    <BlogCreate
       categories={categories}
       title={title}
       overview={overview}
       thumbnail={thumbnail}
-      category={category}
+      selectedCategories={selectedCategories}
       content={content}
       handleChange={handleChange}
+      handleSelectChange={handleSelectChange}
       formData={formData}
       setFormData={setFormData}
       onSubmit={onSubmit}
@@ -64,4 +76,4 @@ function PostCreateContainer() {
   );
 }
 
-export default PostCreateContainer;
+export default BlogCreateContainer;

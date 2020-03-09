@@ -24,11 +24,14 @@ export const createFail = error => {
   };
 };
 
-export const createPost = formData => async dispatch => {
+export const createPost = (formData, selectedCategories) => async dispatch => {
   dispatch(createStart());
 
   await authAxios
-    .post("http://127.0.0.1:8000/api/post-create/", { formData })
+    .post("http://127.0.0.1:8000/api/post-create/", {
+      formData,
+      selectedCategories
+    })
     .then(res => {
       dispatch(createSuccess(res.data.id));
     })

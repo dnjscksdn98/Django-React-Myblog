@@ -6,10 +6,10 @@ function Profile() {
     <React.Fragment>
       <ul>
         <li>
-          <Link to="/profile/create">Create Post</Link>
+          <Link to="/profile/create-post">Create Post</Link>
         </li>
         <li>
-          <Link to="/profile/posts">My Posts</Link>
+          <Link to="/profile/my-posts">My Posts</Link>
         </li>
       </ul>
     </React.Fragment>

@@ -14,8 +14,7 @@ function BlogUpdate(props) {
     content,
     handleChange,
     handleSelectChange,
-    formData,
-    setFormData,
+    handleContentChange,
     onSubmit
   } = props;
 
@@ -71,7 +70,7 @@ function BlogUpdate(props) {
           >
             {categories.map(c =>
               selectedCategories.indexOf(c.title) !== -1 ? (
-                <option selected value={c.title} key={c.id}>
+                <option defaultValue={c.title} value={c.title} key={c.id}>
                   {c.title}
                 </option>
               ) : (
@@ -92,11 +91,7 @@ function BlogUpdate(props) {
                 // You can store the "editor" and use when it is needed.
               }}
               onChange={(event, editor) => {
-                const data = editor.getData();
-                setFormData({
-                  ...formData,
-                  content: data
-                });
+                handleContentChange(event, editor);
               }}
             />
           </div>

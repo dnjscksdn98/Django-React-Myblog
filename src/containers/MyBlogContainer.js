@@ -3,6 +3,7 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
 import MyBlog from "../components/MyBlog";
 import { getMyPosts } from "../modules/myPosts";
+import { deleteMyPost } from "../modules/deletePost";
 
 function MyBlogContainer() {
   const { loading, posts, error } = useSelector(
@@ -25,15 +26,17 @@ function MyBlogContainer() {
     setUpdateId(id);
   };
 
-  const handleDelete = id => {};
+  const handleDelete = id => {
+    dispatch(deleteMyPost(id));
+  };
 
   useEffect(() => {
     dispatch(getMyPosts());
   }, [dispatch]);
 
   if (loading) return <h2>Loading...</h2>;
+  if (!posts) return null;
   if (error) return <h2>There was an error.</h2>;
-  if (!posts) return <h2>You don't have any posts yet.</h2>;
 
   return (
     <MyBlog
@@ -43,6 +46,7 @@ function MyBlogContainer() {
       updatePost={updatePost}
       updateId={updateId}
       handleUpdate={handleUpdate}
+      handleDelete={handleDelete}
     />
   );
 }

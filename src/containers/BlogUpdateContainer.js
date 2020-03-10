@@ -12,9 +12,9 @@ function BlogUpdateContainer(props) {
 
   const { loading, blogId, error, categories } = useSelector(
     state => ({
-      loading: state.update.loading,
-      blogId: state.update.blogId,
-      error: state.update.error,
+      loading: state.updatePost.loading,
+      blogId: state.updatePost.blogId,
+      error: state.updatePost.error,
       categories: state.categories.categories
     }),
     shallowEqual
@@ -29,9 +29,8 @@ function BlogUpdateContainer(props) {
   });
   const { title, overview, thumbnail, content } = formData;
 
-  const [selectedCategories, setSelectedCategories] = useState(
-    [].concat(updatePost.category.map(c => c.title))
-  );
+  const initialState = [].concat(updatePost.category.map(c => c.title));
+  const [selectedCategories, setSelectedCategories] = useState(initialState);
 
   const handleChange = event => {
     setFormData({
@@ -49,6 +48,14 @@ function BlogUpdateContainer(props) {
       }
     }
     setSelectedCategories(value);
+  };
+
+  const handleContentChange = (event, editor) => {
+    const data = editor.getData();
+    setFormData({
+      ...formData,
+      content: data
+    });
   };
 
   const onSubmit = () => {
@@ -74,8 +81,7 @@ function BlogUpdateContainer(props) {
       content={content}
       handleChange={handleChange}
       handleSelectChange={handleSelectChange}
-      formData={formData}
-      setFormData={setFormData}
+      handleContentChange={handleContentChange}
       onSubmit={onSubmit}
     />
   );

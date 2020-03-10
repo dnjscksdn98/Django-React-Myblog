@@ -7,7 +7,8 @@ import comment from "./comment";
 import create from "./createPost";
 import categories from "./categories";
 import myPosts from "./myPosts";
-import update from "./updatePost";
+import updatePost from "./updatePost";
+import deletePost from "./deletePost";
 
 const rootReducer = combineReducers({
   auth,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   create,
   categories,
   myPosts,
-  update
+  updatePost,
+  deletePost
 });
 
 export default rootReducer;

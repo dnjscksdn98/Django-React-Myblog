@@ -32,7 +32,7 @@ export const updateMyPost = (
   dispatch(start());
 
   await authAxios
-    .put("http://127.0.0.1:8000/api/post-update/", {
+    .put(`http://127.0.0.1:8000/api/post/${updateId}/update/`, {
       formData,
       updateId,
       selectedCategories
@@ -51,7 +51,7 @@ const initialState = {
   error: null
 };
 
-export default function update(state = initialState, action) {
+export default function updatePost(state = initialState, action) {
   switch (action.type) {
     case UPDATE_START:
       return {

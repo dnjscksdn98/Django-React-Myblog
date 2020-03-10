@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 function MyBlog(props) {
@@ -8,8 +8,10 @@ function MyBlog(props) {
     setUpdate,
     updatePost,
     updateId,
-    handleUpdate
+    handleUpdate,
+    handleDelete
   } = props;
+  const [hidden, setHidden] = useState(false);
 
   if (update) {
     setUpdate(!update);
@@ -25,6 +27,12 @@ function MyBlog(props) {
       />
     );
   }
+
+  const handleClick = () => {
+    setHidden(!hidden);
+  };
+
+  if (posts.length < 1) return <h2>You don't have any posts.</h2>;
 
   return (
     <ul>
@@ -46,7 +54,13 @@ function MyBlog(props) {
           <div>views : {post.view_count}</div>
           <div>comments : {post.comment_count}</div>
           <button onClick={() => handleUpdate(post, post.id)}>update</button>
-          <button>delete</button>
+          <button onClick={handleClick}>delete</button>
+          {hidden && (
+            <React.Fragment>
+              <button onClick={() => handleDelete(post.id)}>confirm</button>
+              <button onClick={handleClick}>cancel</button>
+            </React.Fragment>
+          )}
         </li>
       ))}
     </ul>

@@ -11,6 +11,7 @@ import BlogDetailContainer from "./containers/BlogDetailContainer";
 import BlogCreateContainer from "./containers/BlogCreateContainer";
 import MyBlogContainer from "./containers/MyBlogContainer";
 import BlogUpdateContainer from "./containers/BlogUpdateContainer";
+import ReadingListContainer from "./containers/ReadingListContainer";
 
 const BaseRouter = () => (
   <Switch>
@@ -18,6 +19,7 @@ const BaseRouter = () => (
     <Route path="/blog/:blogId/update" component={BlogUpdateContainer} />
     <Route exact path="/blog/:blogId" component={BlogDetailContainer} />
     <Route path="/blog" component={BlogContainer} />
+    <Route path="/profile/my-reading-list" component={ReadingListContainer} />
     <Route path="/profile/my-posts" component={MyBlogContainer} />
     <Route path="/profile/create-post" component={BlogCreateContainer} />
     <Route exact path="/profile" component={ProfileContainer} />

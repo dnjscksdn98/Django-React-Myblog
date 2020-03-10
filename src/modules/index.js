@@ -7,6 +7,7 @@ import comment from "./comment";
 import create from "./createPost";
 import categories from "./categories";
 import myPosts from "./myPosts";
+import readingList from "./readingList";
 import updatePost from "./updatePost";
 import deletePost from "./deletePost";
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   create,
   categories,
   myPosts,
+  readingList,
   updatePost,
   deletePost
 });

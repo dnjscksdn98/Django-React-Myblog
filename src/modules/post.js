@@ -1,4 +1,4 @@
-import axios from "axios";
+import { authAxios } from "./utils";
 
 const GET_POST_START = "post/GET_POST_START";
 const GET_POST_SUCCESS = "post/GET_POST_SUCCESS";
@@ -28,7 +28,7 @@ export const getPost = id => async dispatch => {
   dispatch(start());
 
   try {
-    const post = await axios.get(`http://127.0.0.1:8000/api/posts/${id}`);
+    const post = await authAxios.get(`http://127.0.0.1:8000/api/posts/${id}/`);
     dispatch(success(post.data));
   } catch (err) {
     dispatch(fail(err));

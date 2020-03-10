@@ -11,6 +11,9 @@ function Profile() {
         <li>
           <Link to="/profile/my-posts">My Posts</Link>
         </li>
+        <li>
+          <Link to="/profile/my-reading-list">My Reading List</Link>
+        </li>
       </ul>
     </React.Fragment>
   );

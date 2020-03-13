@@ -1,4 +1,4 @@
-import { authAxios } from "./utils";
+import axios from "axios";
 
 const ADD_COMMENT_START = "comment/ADD_COMMENT_START";
 const ADD_COMMENT_SUCCESS = "comment/ADD_COMMENT_SUCCESS";
@@ -24,18 +24,17 @@ export const fail = error => {
   };
 };
 
-export const addComment = (comment, blogId) => async dispatch => {
+export const addComment = (comment, blogId, token) => dispatch => {
   dispatch(start());
 
-  // try {
-  //   await authAxios.post("http://127.0.0.1:8000/api/add-comment/", {comment, blogId})
-  //   dispatch(success(comment));
-  // } catch(err) {
-  //   dispatch(fail(err));
-  // }
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
-  await authAxios
-    .post("http://127.0.0.1:8000/api/add-comment/", {
+  authAxios
+    .post("http://localhost:8000/api/add-comment/", {
       comment,
       blogId
     })

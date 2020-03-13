@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useAuth0 } from "../react-auth0-spa";
 
 import BlogUpdate from "../components/BlogUpdate";
 import { getCategories } from "../modules/categories";
@@ -9,6 +10,8 @@ import { updateMyPost } from "../modules/updatePost";
 function BlogUpdateContainer(props) {
   const updatePost = props.location.state.updatePost;
   const updateId = props.location.state.updateId;
+
+  const { getTokenSilently } = useAuth0();
 
   const { loading, blogId, error, categories } = useSelector(
     state => ({
@@ -58,13 +61,18 @@ function BlogUpdateContainer(props) {
     });
   };
 
-  const onSubmit = () => {
-    dispatch(updateMyPost(formData, updateId, selectedCategories));
+  const onSubmit = async () => {
+    const token = await getTokenSilently();
+    dispatch(updateMyPost(formData, updateId, selectedCategories, token));
   };
 
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+    async function dispatchGetCategories() {
+      const token = await getTokenSilently();
+      dispatch(getCategories(token));
+    }
+    dispatchGetCategories();
+  }, [dispatch, getTokenSilently]);
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error.</h2>;

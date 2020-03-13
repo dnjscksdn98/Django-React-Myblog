@@ -1,4 +1,4 @@
-import { authAxios } from "./utils";
+import axios from "axios";
 
 const UPDATE_START = "updatePost/UPDATE_START";
 const UPDATE_SUCCESS = "updatePost/UPDATE_SUCCESS";
@@ -27,9 +27,16 @@ export const fail = error => {
 export const updateMyPost = (
   formData,
   updateId,
-  selectedCategories
+  selectedCategories,
+  token
 ) => async dispatch => {
   dispatch(start());
+
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
   await authAxios
     .put(`http://127.0.0.1:8000/api/post/${updateId}/update/`, {

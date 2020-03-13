@@ -1,10 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 
 import HomeContainer from "./containers/HomeContainer";
-import LoginContainer from "./containers/LoginContainer";
-import SignupContainer from "./containers/SignupContainer";
-import LogoutContainer from "./containers/LogoutContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import BlogContainer from "./containers/BlogContainer";
 import BlogDetailContainer from "./containers/BlogDetailContainer";
@@ -16,16 +14,16 @@ import ReadingListContainer from "./containers/ReadingListContainer";
 const BaseRouter = () => (
   <Switch>
     <Route exact path="/" component={HomeContainer} />
-    <Route path="/blog/:blogId/update" component={BlogUpdateContainer} />
+    <PrivateRoute path="/blog/:blogId/update" component={BlogUpdateContainer} />
     <Route exact path="/blog/:blogId" component={BlogDetailContainer} />
     <Route path="/blog" component={BlogContainer} />
-    <Route path="/profile/my-reading-list" component={ReadingListContainer} />
-    <Route path="/profile/my-posts" component={MyBlogContainer} />
-    <Route path="/profile/create-post" component={BlogCreateContainer} />
-    <Route exact path="/profile" component={ProfileContainer} />
-    <Route path="/logout" component={LogoutContainer} />
-    <Route path="/login" component={LoginContainer} />
-    <Route path="/signup" component={SignupContainer} />
+    <PrivateRoute
+      path="/profile/my-reading-list"
+      component={ReadingListContainer}
+    />
+    <PrivateRoute path="/profile/my-posts" component={MyBlogContainer} />
+    <PrivateRoute path="/profile/create-post" component={BlogCreateContainer} />
+    <PrivateRoute exact path="/profile" component={ProfileContainer} />
     <Route
       render={({ location }) => (
         <React.Fragment>

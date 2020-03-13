@@ -1,4 +1,4 @@
-import { authAxios } from "./utils";
+import axios from "axios";
 
 const GET_POST_START = "post/GET_POST_START";
 const GET_POST_SUCCESS = "post/GET_POST_SUCCESS";
@@ -24,15 +24,23 @@ export const fail = error => {
   };
 };
 
-export const getPost = id => async dispatch => {
+export const getPost = (id, token) => dispatch => {
   dispatch(start());
 
-  try {
-    const post = await authAxios.get(`http://127.0.0.1:8000/api/posts/${id}/`);
-    dispatch(success(post.data));
-  } catch (err) {
-    dispatch(fail(err));
-  }
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  authAxios
+    .get(`http://127.0.0.1:8000/api/posts/${id}/`)
+    .then(res => {
+      dispatch(success(res.data));
+    })
+    .catch(err => {
+      dispatch(fail(err));
+    });
 };
 
 const initialState = {

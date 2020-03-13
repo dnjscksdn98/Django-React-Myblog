@@ -1,4 +1,4 @@
-import { authAxios } from "./utils";
+import axios from "axios";
 
 const GET_READING_LIST_START = "readingList/GET_READING_LIST_START";
 const GET_READING_LIST_SUCCESS = "readingList/GET_READING_LIST_SUCCESS";
@@ -24,17 +24,23 @@ export const fail = error => {
   };
 };
 
-export const getReadingList = () => async dispatch => {
+export const getReadingList = token => dispatch => {
   dispatch(start());
 
-  try {
-    const posts = await authAxios.get(
-      "http://127.0.0.1:8000/api/my-reading-list/"
-    );
-    dispatch(success(posts.data));
-  } catch (err) {
-    dispatch(fail(err));
-  }
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  authAxios
+    .get("http://127.0.0.1:8000/api/my-reading-list/")
+    .then(res => {
+      dispatch(success(res.data));
+    })
+    .catch(err => {
+      dispatch(fail(err));
+    });
 };
 
 const initialState = {

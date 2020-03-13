@@ -1,4 +1,4 @@
-import { authAxios } from "./utils";
+import axios from "axios";
 
 const GET_CATEGORIES_START = "categories/GET_CATEGORIES_START";
 const GET_CATEGORIES_SUCCESS = "categories/GET_CATEGORIES_SUCCESS";
@@ -24,17 +24,15 @@ export const fail = error => {
   };
 };
 
-export const getCategories = () => dispatch => {
+export const getCategories = token => dispatch => {
   dispatch(start());
 
-  // try {
-  //   const categories = await authAxios.get(
-  //     "http://127.0.0.1:8000/api/retrieve-categories/"
-  //   );
-  //   dispatch(success(categories));
-  // } catch (err) {
-  //   dispatch(fail(err));
-  // }
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
   authAxios
     .get("http://127.0.0.1:8000/api/retrieve-categories/")
     .then(res => {

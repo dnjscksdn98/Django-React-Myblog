@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useAuth0 } from "../react-auth0-spa";
 
 import BlogCreate from "../components/BlogCreate";
 import { getCategories } from "../modules/categories";
 import { createPost } from "../modules/createPost";
 
 function BlogCreateContainer() {
+  const { getTokenSilently } = useAuth0();
+
   const { loading, blogId, error, categories } = useSelector(
     state => ({
       loading: state.create.loading,
@@ -46,13 +49,18 @@ function BlogCreateContainer() {
     setSelectedCategories(value);
   };
 
-  const onSubmit = event => {
-    dispatch(createPost(formData, selectedCategories));
+  const onSubmit = async () => {
+    const token = await getTokenSilently();
+    dispatch(createPost(formData, selectedCategories, token));
   };
 
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+    async function dispatchGetCategories() {
+      const token = await getTokenSilently();
+      dispatch(getCategories(token));
+    }
+    dispatchGetCategories();
+  }, [dispatch, getTokenSilently]);
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error.</h2>;

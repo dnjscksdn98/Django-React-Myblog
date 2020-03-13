@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useAuth0 } from "../react-auth0-spa";
 
 import ReadingList from "../components/ReadingList";
 import { getReadingList } from "../modules/readingList";
@@ -15,9 +16,15 @@ function ReadingListContainer() {
   );
   const dispatch = useDispatch();
 
+  const { getTokenSilently } = useAuth0();
+
   useEffect(() => {
-    dispatch(getReadingList());
-  }, [dispatch]);
+    async function dispatchGetReadingList() {
+      const token = await getTokenSilently();
+      dispatch(getReadingList(token));
+    }
+    dispatchGetReadingList();
+  }, [dispatch, getTokenSilently]);
 
   if (loading) return <h2>Loading...</h2>;
   if (!posts) return null;

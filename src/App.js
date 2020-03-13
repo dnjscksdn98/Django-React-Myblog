@@ -1,24 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useAuth0 } from "./react-auth0-spa";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
 import BaseRouter from "./routes";
-import LayoutContainer from "./containers/LayoutContainer";
-import { checkState } from "./modules/auth";
+import NavBar from "./components/NavBar";
+import history from "./utils/history";
 
 function App() {
-  const isAuthenticated = useSelector(state => state.auth.token !== null);
-  const dispatch = useDispatch();
+  const { loading } = useAuth0();
 
-  useEffect(() => {
-    dispatch(checkState());
-  }, [dispatch]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <Router>
-      <LayoutContainer isAuthenticated={isAuthenticated}>
-        <BaseRouter />
-      </LayoutContainer>
+    <Router history={history}>
+      <header>
+        <NavBar />
+      </header>
+
+      <BaseRouter />
     </Router>
   );
 }

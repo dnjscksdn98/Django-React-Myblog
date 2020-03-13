@@ -1,4 +1,4 @@
-import { authAxios } from "./utils";
+import axios from "axios";
 
 const DELETE_START = "deletePost/DELETE_START";
 const DELETE_SUCCESS = "deletePost/DELETE_SUCCESS";
@@ -18,14 +18,21 @@ export const success = () => {
 
 export const fail = error => {
   return {
-    type: DELETE_FAIL
+    type: DELETE_FAIL,
+    error
   };
 };
 
-export const deleteMyPost = deleteId => async dispatch => {
+export const deleteMyPost = (deleteId, token) => dispatch => {
   dispatch(start());
 
-  await authAxios
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  authAxios
     .delete(`http://127.0.0.1:8000/api/post/${deleteId}/delete/`)
     .then(res => {
       dispatch(success());

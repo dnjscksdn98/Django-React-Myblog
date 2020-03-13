@@ -1,4 +1,4 @@
-import { authAxios } from "./utils";
+import axios from "axios";
 
 const CREATE_START = "createPost/CREATE_START";
 const CREATE_SUCCESS = "createPost/CREATE_SUCCESS";
@@ -24,10 +24,16 @@ export const createFail = error => {
   };
 };
 
-export const createPost = (formData, selectedCategories) => async dispatch => {
+export const createPost = (formData, selectedCategories, token) => dispatch => {
   dispatch(createStart());
 
-  await authAxios
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  authAxios
     .post("http://127.0.0.1:8000/api/post-create/", {
       formData,
       selectedCategories

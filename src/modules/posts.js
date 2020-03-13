@@ -29,7 +29,7 @@ export const getPosts = () => async dispatch => {
 
   try {
     const posts = await axios.get("http://127.0.0.1:8000/api/posts/");
-    dispatch(success(posts.data));
+    await dispatch(success(posts.data));
   } catch (err) {
     dispatch(fail(err));
   }

@@ -7,7 +7,7 @@ import BlogDetail from "../components/BlogDetail";
 import { addComment } from "../modules/comment";
 
 function BlogDetailContainer({ match }) {
-  const { getTokenSilently } = useAuth0();
+  const { getTokenSilently, isAuthenticated } = useAuth0();
 
   const { blogId } = match.params;
   const { loading, post, error } = useSelector(
@@ -40,7 +40,12 @@ function BlogDetailContainer({ match }) {
       const token = await getTokenSilently();
       dispatch(getPost(blogId, token));
     }
-    dispatchGetPost(blogId);
+
+    if (isAuthenticated) {
+      dispatchGetPost(blogId);
+    } else {
+      dispatch(getPost(blogId));
+    }
   }, [getTokenSilently, dispatch, blogId]);
 
   if (loading) return <h2>Loading...</h2>;

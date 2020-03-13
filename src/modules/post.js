@@ -27,20 +27,31 @@ export const fail = error => {
 export const getPost = (id, token) => dispatch => {
   dispatch(start());
 
-  const authAxios = axios.create({
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-
-  authAxios
-    .get(`http://127.0.0.1:8000/api/posts/${id}/`)
-    .then(res => {
-      dispatch(success(res.data));
-    })
-    .catch(err => {
-      dispatch(fail(err));
+  if (token) {
+    const authAxios = axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
+
+    authAxios
+      .get(`http://127.0.0.1:8000/api/posts/${id}/`)
+      .then(res => {
+        dispatch(success(res.data));
+      })
+      .catch(err => {
+        dispatch(fail(err));
+      });
+  } else {
+    axios
+      .get(`http://127.0.0.1:8000/api/posts/${id}/`)
+      .then(res => {
+        dispatch(success(res.data));
+      })
+      .catch(err => {
+        dispatch(fail(err));
+      });
+  }
 };
 
 const initialState = {

@@ -46,7 +46,7 @@ function BlogDetailContainer({ match }) {
     } else {
       dispatch(getPost(blogId));
     }
-  }, [getTokenSilently, dispatch, blogId]);
+  }, [isAuthenticated, getTokenSilently, dispatch, blogId]);
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error</h2>;

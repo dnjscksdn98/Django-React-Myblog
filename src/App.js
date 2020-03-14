@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "./react-auth0-spa";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 
 import BaseRouter from "./routes";
 import NavBar from "./components/NavBar";

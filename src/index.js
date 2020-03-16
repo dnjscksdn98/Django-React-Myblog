@@ -4,7 +4,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 // auth0
-import { Auth0Provider } from "./react-auth0-spa";
+import { Auth0Provider } from "./auth/react-auth0-spa";
 import config from "./auth/auth_config.json";
 import history from "./utils/history";
 

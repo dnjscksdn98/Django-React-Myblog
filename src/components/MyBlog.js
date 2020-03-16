@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 
 function MyBlog(props) {
   const {
-    posts,
+    userProfile,
     update,
     setUpdate,
     updatePost,
@@ -32,13 +32,14 @@ function MyBlog(props) {
     setHidden(!hidden);
   };
 
-  if (posts.length < 1) return <h2>You don't have any posts.</h2>;
+  if (userProfile.my_posts.length < 1)
+    return <h2>You don't have any posts.</h2>;
 
   return (
     <React.Fragment>
       <h1>My Posts</h1>
       <ul>
-        {posts.map(post => (
+        {userProfile.my_posts.map(post => (
           <li key={post.id}>
             <h2>
               <Link to={`/blog/${post.id}`}>{post.title}</Link>

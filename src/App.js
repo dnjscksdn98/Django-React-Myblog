@@ -1,6 +1,6 @@
 import React from "react";
 import { Router } from "react-router-dom";
-import { useAuth0 } from "./auth/react-auth0-spa0-spa";
+import { useAuth0 } from "./auth/react-auth0-spa";
 
 import BaseRouter from "./routes";
 import NavBar from "./components/NavBar";

@@ -10,6 +10,8 @@ import myPosts from "./myPosts";
 import readingList from "./readingList";
 import updatePost from "./updatePost";
 import deletePost from "./deletePost";
+import userProfile from "./userProfile";
+import userId from "./userId";
 
 const rootReducer = combineReducers({
   auth,
@@ -21,7 +23,9 @@ const rootReducer = combineReducers({
   myPosts,
   readingList,
   updatePost,
-  deletePost
+  deletePost,
+  userProfile,
+  userId
 });
 
 export default rootReducer;

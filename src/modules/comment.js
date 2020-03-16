@@ -28,7 +28,7 @@ export const addComment = (comment, blogId, token) => dispatch => {
   });
 
   authAxios
-    .post("http://localhost:8000/api/add-comment/", {
+    .post(`http://localhost:8000/api/posts/${blogId}/comments/`, {
       comment,
       blogId
     })

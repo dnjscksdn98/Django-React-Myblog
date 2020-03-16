@@ -33,7 +33,7 @@ export const updateMyPost = (
   });
 
   await authAxios
-    .put(`http://127.0.0.1:8000/api/post/${updateId}/update/`, {
+    .put(`http://127.0.0.1:8000/api/posts/${updateId}/`, {
       formData,
       updateId,
       selectedCategories

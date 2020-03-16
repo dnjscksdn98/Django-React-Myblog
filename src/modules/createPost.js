@@ -28,7 +28,7 @@ export const createPost = (formData, selectedCategories, token) => dispatch => {
   });
 
   authAxios
-    .post("http://127.0.0.1:8000/api/post-create/", {
+    .post("http://127.0.0.1:8000/api/posts/", {
       formData,
       selectedCategories
     })

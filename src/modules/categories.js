@@ -28,7 +28,7 @@ export const getCategories = token => dispatch => {
   });
 
   authAxios
-    .get("http://127.0.0.1:8000/api/retrieve-categories/")
+    .get("http://127.0.0.1:8000/api/categories/")
     .then(res => {
       dispatch(success(res.data));
     })

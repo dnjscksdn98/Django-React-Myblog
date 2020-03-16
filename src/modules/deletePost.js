@@ -27,7 +27,7 @@ export const deleteMyPost = (deleteId, token) => dispatch => {
   });
 
   authAxios
-    .delete(`http://127.0.0.1:8000/api/post/${deleteId}/delete/`)
+    .delete(`http://127.0.0.1:8000/api/posts/${deleteId}/`)
     .then(res => {
       dispatch(success());
     })

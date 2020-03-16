@@ -1,6 +1,6 @@
 import React from "react";
-import { useAuth0 } from "./react-auth0-spa";
 import { Router } from "react-router-dom";
+import { useAuth0 } from "./auth/react-auth0-spa0-spa";
 
 import BaseRouter from "./routes";
 import NavBar from "./components/NavBar";
@@ -10,7 +10,7 @@ function App() {
   const { loading } = useAuth0();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <h2>Loading...</h2>;
   }
 
   return (

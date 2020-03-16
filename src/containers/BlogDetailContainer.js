@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { useAuth0 } from "../react-auth0-spa";
+import { useAuth0 } from "../auth/react-auth0-spa";
 
-import { getPost } from "../modules/post";
 import BlogDetail from "../components/BlogDetail";
+import { getPost } from "../modules/post";
 import { addComment } from "../modules/comment";
 
 function BlogDetailContainer({ match }) {
   const { getTokenSilently, isAuthenticated } = useAuth0();
 
   const { blogId } = match.params;
+
   const { loading, post, error } = useSelector(
     state => ({
       loading: state.post.loading,
@@ -46,7 +47,7 @@ function BlogDetailContainer({ match }) {
     } else {
       dispatch(getPost(blogId));
     }
-  }, [isAuthenticated, getTokenSilently, dispatch, blogId]);
+  }, [getTokenSilently, dispatch, blogId, isAuthenticated]);
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error</h2>;
@@ -55,8 +56,8 @@ function BlogDetailContainer({ match }) {
   return (
     <BlogDetail
       post={post}
-      handleChange={handleChange}
       comment={comment}
+      handleChange={handleChange}
       handleSubmit={handleSubmit}
     />
   );

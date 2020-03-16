@@ -18,6 +18,8 @@ function BlogUpdate(props) {
     onSubmit
   } = props;
 
+  if (!categories) return <h2>Loading..</h2>;
+
   return (
     <div style={{ width: "550px", margin: "0 auto" }}>
       <div style={{ maxWidth: "100%" }}>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { useAuth0 } from "../react-auth0-spa";
+import { Redirect } from "react-router-dom";
+import { useAuth0 } from "../auth/react-auth0-spa";
 
 import BlogUpdate from "../components/BlogUpdate";
 import { getCategories } from "../modules/categories";
@@ -72,12 +72,12 @@ function BlogUpdateContainer(props) {
       dispatch(getCategories(token));
     }
     dispatchGetCategories();
-  }, [dispatch, getTokenSilently]);
+  }, [getTokenSilently, dispatch]);
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>There was an error.</h2>;
   if (blogId) return <Redirect to={`/blog/${blogId}`} />;
-  if (!categories) return <h2>Loading...</h2>;
+  if (!categories) return null;
 
   return (
     <BlogUpdate

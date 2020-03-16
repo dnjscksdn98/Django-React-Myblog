@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { useAuth0 } from "../react-auth0-spa";
+import { useAuth0 } from "../auth/react-auth0-spa";
 
 import MyBlog from "../components/MyBlog";
 import { getMyPosts } from "../modules/myPosts";
@@ -40,11 +40,11 @@ function MyBlogContainer() {
       dispatch(getMyPosts(token));
     }
     dispatchGetMyPosts();
-  }, [dispatch, getTokenSilently]);
+  }, [getTokenSilently, dispatch]);
 
   if (loading) return <h2>Loading...</h2>;
-  if (!posts) return null;
   if (error) return <h2>There was an error.</h2>;
+  if (!posts) return null;
 
   return (
     <MyBlog

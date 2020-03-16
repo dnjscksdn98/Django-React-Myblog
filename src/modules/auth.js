@@ -5,25 +5,19 @@ const AUTH_SUCCESS = "auth/AUTH_SUCCESS";
 const AUTH_FAIL = "auth/AUTH_FAIL";
 const AUTH_LOGOUT = "auth/AUTH_LOGOUT";
 
-export const start = () => {
-  return {
-    type: AUTH_START
-  };
-};
+export const start = () => ({
+  type: AUTH_START
+});
 
-export const success = token => {
-  return {
-    type: AUTH_SUCCESS,
-    token
-  };
-};
+export const success = token => ({
+  type: AUTH_SUCCESS,
+  token
+});
 
-export const fail = error => {
-  return {
-    type: AUTH_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: AUTH_FAIL,
+  error
+});
 
 export const logout = () => {
   localStorage.removeItem("token");

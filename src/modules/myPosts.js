@@ -4,25 +4,19 @@ const GET_MY_POSTS_START = "myPosts/GET_MY_POSTS_START";
 const GET_MY_POSTS_SUCCESS = "myPosts/GET_MY_POSTS_SUCCESS";
 const GET_MY_POSTS_FAIL = "myPosts/GET_MY_POSTS_FAIL";
 
-export const start = () => {
-  return {
-    type: GET_MY_POSTS_START
-  };
-};
+export const start = () => ({
+  type: GET_MY_POSTS_START
+});
 
-export const success = posts => {
-  return {
-    type: GET_MY_POSTS_SUCCESS,
-    posts
-  };
-};
+export const success = posts => ({
+  type: GET_MY_POSTS_SUCCESS,
+  posts
+});
 
-export const fail = error => {
-  return {
-    type: GET_MY_POSTS_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: GET_MY_POSTS_FAIL,
+  error
+});
 
 export const getMyPosts = token => dispatch => {
   dispatch(start());

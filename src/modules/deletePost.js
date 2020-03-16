@@ -4,24 +4,18 @@ const DELETE_START = "deletePost/DELETE_START";
 const DELETE_SUCCESS = "deletePost/DELETE_SUCCESS";
 const DELETE_FAIL = "deletePost/DELETE_FAIL";
 
-export const start = () => {
-  return {
-    type: DELETE_START
-  };
-};
+export const start = () => ({
+  type: DELETE_START
+});
 
-export const success = () => {
-  return {
-    type: DELETE_SUCCESS
-  };
-};
+export const success = () => ({
+  type: DELETE_SUCCESS
+});
 
-export const fail = error => {
-  return {
-    type: DELETE_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: DELETE_FAIL,
+  error
+});
 
 export const deleteMyPost = (deleteId, token) => dispatch => {
   dispatch(start());

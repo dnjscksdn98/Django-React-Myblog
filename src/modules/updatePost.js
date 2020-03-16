@@ -4,25 +4,19 @@ const UPDATE_START = "updatePost/UPDATE_START";
 const UPDATE_SUCCESS = "updatePost/UPDATE_SUCCESS";
 const UPDATE_FAIL = "updatePost/UPDATE_FAIL";
 
-export const start = () => {
-  return {
-    type: UPDATE_START
-  };
-};
+export const start = () => ({
+  type: UPDATE_START
+});
 
-export const success = blogId => {
-  return {
-    type: UPDATE_SUCCESS,
-    blogId
-  };
-};
+export const success = blogId => ({
+  type: UPDATE_SUCCESS,
+  blogId
+});
 
-export const fail = error => {
-  return {
-    type: UPDATE_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: UPDATE_FAIL,
+  error
+});
 
 export const updateMyPost = (
   formData,

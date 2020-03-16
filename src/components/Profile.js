@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "../react-auth0-spa";
+import { useAuth0 } from "../auth/react-auth0-spa";
 
 function Profile() {
   const { loading, user } = useAuth0();
 
   if (loading || !user) {
-    return <div>Loading...</div>;
+    return <h2>Loading...</h2>;
   }
 
   return (

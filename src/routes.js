@@ -27,7 +27,7 @@ const BaseRouter = () => (
     <Route
       render={({ location }) => (
         <React.Fragment>
-          <h1>이 페이지는 존재하지 않습니다.</h1>
+          <h1>This page does not exist.</h1>
         </React.Fragment>
       )}
     />

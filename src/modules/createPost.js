@@ -4,25 +4,19 @@ const CREATE_START = "createPost/CREATE_START";
 const CREATE_SUCCESS = "createPost/CREATE_SUCCESS";
 const CREATE_FAIL = "createPost/CREATE_FAIL";
 
-export const createStart = () => {
-  return {
-    type: CREATE_START
-  };
-};
+export const createStart = () => ({
+  type: CREATE_START
+});
 
-export const createSuccess = blogId => {
-  return {
-    type: CREATE_SUCCESS,
-    blogId
-  };
-};
+export const createSuccess = blogId => ({
+  type: CREATE_SUCCESS,
+  blogId
+});
 
-export const createFail = error => {
-  return {
-    type: CREATE_FAIL,
-    error
-  };
-};
+export const createFail = error => ({
+  type: CREATE_FAIL,
+  error
+});
 
 export const createPost = (formData, selectedCategories, token) => dispatch => {
   dispatch(createStart());

@@ -2,7 +2,9 @@ import React from "react";
 import ReactSafeHtml from "react-safe-html";
 
 function BlogDetail(props) {
-  const { post, handleChange, comment, handleSubmit } = props;
+  const { post, comment, handleChange, handleSubmit } = props;
+
+  if (!post) return <h2>This post does not exist.</h2>;
 
   return (
     <div style={{ width: "1000px", margin: "0 auto" }}>

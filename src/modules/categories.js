@@ -4,25 +4,19 @@ const GET_CATEGORIES_START = "categories/GET_CATEGORIES_START";
 const GET_CATEGORIES_SUCCESS = "categories/GET_CATEGORIES_SUCCESS";
 const GET_CATEGORIES_FAIL = "categories/GET_CATEGORIES_FAIL";
 
-export const start = () => {
-  return {
-    type: GET_CATEGORIES_START
-  };
-};
+export const start = () => ({
+  type: GET_CATEGORIES_START
+});
 
-export const success = categories => {
-  return {
-    type: GET_CATEGORIES_SUCCESS,
-    categories
-  };
-};
+export const success = categories => ({
+  type: GET_CATEGORIES_SUCCESS,
+  categories
+});
 
-export const fail = error => {
-  return {
-    type: GET_CATEGORIES_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: GET_CATEGORIES_FAIL,
+  error
+});
 
 export const getCategories = token => dispatch => {
   dispatch(start());

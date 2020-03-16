@@ -4,35 +4,31 @@ const GET_POSTS_START = "posts/GET_POSTS_START";
 const GET_POSTS_SUCCESS = "posts/GET_POSTS_SUCCESS";
 const GET_POSTS_FAIL = "posts/GET_POSTS_FAIL";
 
-export const start = () => {
-  return {
-    type: GET_POSTS_START
-  };
-};
+export const start = () => ({
+  type: GET_POSTS_START
+});
 
-export const success = posts => {
-  return {
-    type: GET_POSTS_SUCCESS,
-    posts
-  };
-};
+export const success = posts => ({
+  type: GET_POSTS_SUCCESS,
+  posts
+});
 
-export const fail = error => {
-  return {
-    type: GET_POSTS_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: GET_POSTS_FAIL,
+  error
+});
 
-export const getPosts = () => async dispatch => {
+export const getPosts = () => dispatch => {
   dispatch(start());
 
-  try {
-    const posts = await axios.get("http://127.0.0.1:8000/api/posts/");
-    await dispatch(success(posts.data));
-  } catch (err) {
-    dispatch(fail(err));
-  }
+  axios
+    .get("http://127.0.0.1:8000/api/posts/")
+    .then(res => {
+      dispatch(success(res.data));
+    })
+    .catch(err => {
+      dispatch(fail(err));
+    });
 };
 
 const initialState = {

@@ -4,25 +4,19 @@ const GET_READING_LIST_START = "readingList/GET_READING_LIST_START";
 const GET_READING_LIST_SUCCESS = "readingList/GET_READING_LIST_SUCCESS";
 const GET_READING_LIST_FAIL = "readingList/GET_READING_LIST_FAIL";
 
-export const start = () => {
-  return {
-    type: GET_READING_LIST_START
-  };
-};
+export const start = () => ({
+  type: GET_READING_LIST_START
+});
 
-export const success = posts => {
-  return {
-    type: GET_READING_LIST_SUCCESS,
-    posts
-  };
-};
+export const success = posts => ({
+  type: GET_READING_LIST_SUCCESS,
+  posts
+});
 
-export const fail = error => {
-  return {
-    type: GET_READING_LIST_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: GET_READING_LIST_FAIL,
+  error
+});
 
 export const getReadingList = token => dispatch => {
   dispatch(start());

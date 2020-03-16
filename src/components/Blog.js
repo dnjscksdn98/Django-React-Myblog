@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 function Blog(props) {
   const { posts } = props;
 
+  if (!posts) return <h2>There is no posts.</h2>;
+
   return (
     <React.Fragment>
       <h1>Blog Posts</h1>

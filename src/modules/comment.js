@@ -4,25 +4,19 @@ const ADD_COMMENT_START = "comment/ADD_COMMENT_START";
 const ADD_COMMENT_SUCCESS = "comment/ADD_COMMENT_SUCCESS";
 const ADD_COMMENT_FAIL = "comment/ADD_COMMENT_FAIL";
 
-export const start = () => {
-  return {
-    type: ADD_COMMENT_START
-  };
-};
+export const start = () => ({
+  type: ADD_COMMENT_START
+});
 
-export const success = comment => {
-  return {
-    type: ADD_COMMENT_SUCCESS,
-    comment
-  };
-};
+export const success = comment => ({
+  type: ADD_COMMENT_SUCCESS,
+  comment
+});
 
-export const fail = error => {
-  return {
-    type: ADD_COMMENT_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: ADD_COMMENT_FAIL,
+  error
+});
 
 export const addComment = (comment, blogId, token) => dispatch => {
   dispatch(start());

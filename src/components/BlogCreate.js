@@ -14,10 +14,11 @@ function BlogCreate(props) {
     content,
     handleChange,
     handleSelectChange,
-    formData,
-    setFormData,
+    handleContentChange,
     onSubmit
   } = props;
+
+  if (!categories) return <h2>Loading...</h2>;
 
   return (
     <div style={{ width: "550px", margin: "0 auto" }}>
@@ -87,11 +88,7 @@ function BlogCreate(props) {
                 // You can store the "editor" and use when it is needed.
               }}
               onChange={(event, editor) => {
-                const data = editor.getData();
-                setFormData({
-                  ...formData,
-                  content: data
-                });
+                handleContentChange(event, editor);
               }}
             />
           </div>

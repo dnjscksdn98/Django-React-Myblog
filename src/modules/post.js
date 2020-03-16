@@ -4,25 +4,19 @@ const GET_POST_START = "post/GET_POST_START";
 const GET_POST_SUCCESS = "post/GET_POST_SUCCESS";
 const GET_POST_FAIL = "post/GET_POST_FAIL";
 
-export const start = () => {
-  return {
-    type: GET_POST_START
-  };
-};
+export const start = () => ({
+  type: GET_POST_START
+});
 
-export const success = post => {
-  return {
-    type: GET_POST_SUCCESS,
-    post
-  };
-};
+export const success = post => ({
+  type: GET_POST_SUCCESS,
+  post
+});
 
-export const fail = error => {
-  return {
-    type: GET_POST_FAIL,
-    error
-  };
-};
+export const fail = error => ({
+  type: GET_POST_FAIL,
+  error
+});
 
 export const getPost = (id, token) => dispatch => {
   dispatch(start());

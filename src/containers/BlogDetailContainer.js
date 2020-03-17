@@ -31,9 +31,8 @@ function BlogDetailContainer({ match }) {
     event.preventDefault();
 
     const token = await getTokenSilently();
-    dispatch(addComment(comment, blogId, token));
     setComment("");
-    dispatch(getPost(blogId, token));
+    dispatch(addComment(comment, blogId, token));
   };
 
   useEffect(() => {

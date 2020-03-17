@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ReadingList(props) {
-  const { posts } = props;
+  const { userProfile } = props;
 
-  if (posts.length < 1) return <h2>You don't have any readings.</h2>;
+  if (userProfile.reading_list.length < 1)
+    return <h2>You don't have any readings.</h2>;
 
   return (
     <React.Fragment>
       <h1>My Reading List</h1>
       <ul>
-        {posts.map(post => (
+        {userProfile.reading_list.map(post => (
           <li key={post.post.id}>
             <h2>
               <Link to={`/blog/${post.post.id}`}>{post.post.title}</Link>

@@ -26,7 +26,7 @@ function MyBlogContainer() {
     dispatch(deleteMyPost(id, token));
   };
 
-  if (!userProfile.my_posts.length < 1) return null;
+  if (!userProfile) return null;
 
   return (
     <MyBlog

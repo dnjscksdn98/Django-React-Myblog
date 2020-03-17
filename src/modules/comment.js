@@ -32,8 +32,11 @@ export const addComment = (comment, blogId, token) => dispatch => {
       comment,
       blogId
     })
-    .then(res => {
+    .then(() => {
       dispatch(success(comment));
+    })
+    .then(() => {
+      window.location.reload(true);
     })
     .catch(err => {
       dispatch(fail(err));
